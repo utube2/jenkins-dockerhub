@@ -7,7 +7,7 @@ pipeline {
     agent any 
     environment {
         registry = 'utube/pythonapp'  //"your_docker_user_id/mypythonapp"
-        registryCredential = 'docker-hub' // credential id - add docker username , password n copy the id
+        registryCredential = 'docker-hub1' // credential id - add docker username , password n copy the id
         dockerImage = ''  // variable to hold docker build image information
         
     }
@@ -47,8 +47,22 @@ pipeline {
                     
                 }
             }
+
+or 
+
+          stage ('Docker PUBLISH ') {
+            steps {
+                    script {
+                             withDockerRegistry(credentialsId: 'docker-hub1') {
+                                 dockerImage.push()
+                               
+                             }
+                             
+                    }
             
-        }
+            
+           }
+         }
         // Stopping Docker containers for cleaner Docker run
         stage('docker stop container') {
              steps {
