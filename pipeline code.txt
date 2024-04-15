@@ -68,6 +68,9 @@ or
              steps {
                sh 'docker ps -f name=mypythonappContainer -q | xargs --no-run-if-empty docker container stop'
                sh 'docker container ls -a -fname=mypythonappContainer -q | xargs -r docker container rm'
+
+              // xargs -r ;; -r stands for  --no-run-if-empty;;  
+              // sh 'docker ps -f name=web -q | xargs -r docker rm -f'
              }
         }
     
